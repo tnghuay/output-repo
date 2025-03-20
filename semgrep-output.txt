@@ -1,0 +1,304 @@
+METRICS: Using configs from the Registry (like --config=p/ci) reports pseudonymous rule metrics to semgrep.dev.
+To disable Registry rule metrics, use "--metrics=off".
+Using configs only from local files (like --config=xyz.yml) does not enable metrics.
+
+More information: https://semgrep.dev/docs/metrics
+
+
+
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 717 files tracked by git with 1060 Code rules:
+
+  Language      Rules   Files          Origin      Rules
+ ─────────────────────────────        ───────────────────
+  <multilang>      62     593          Community    1060
+  java            118     113
+  yaml             31      56
+  terraform       101      37
+  bash              4      22
+  json              4      10
+  html              1      10
+  php              38       5
+  js              157       4
+  c                 5       3
+  dockerfile        5       2
+  python          242       1
+
+
+
+┌──────────────────┐
+│ 44 Code Findings │
+└──────────────────┘
+
+    /repo/aws/secrets.tf
+    ❯❱ terraform.aws.security.aws-secretsmanager-secret-unencrypted.aws-secretsmanager-secret-unencrypted
+          By default, AWS SecretManager secrets are encrypted using AWS-managed keys. However, for added
+          security, it's recommended to configure your own AWS KMS encryption key to protect your secrets in
+          the Secret Manager. You can either create a new aws_kms_key resource or use the ARN of an existing
+          key in your AWS account to do so.
+          Details: https://sg.run/nrRX
+
+            5┆ resource "aws_secretsmanager_secret" "secret" {
+            6┆   name                    = "wrongsecret"
+            7┆   recovery_window_in_days = 0
+            8┆ }
+            ⋮┆----------------------------------------
+           49┆ resource "aws_secretsmanager_secret" "secret_2" {
+           50┆   name                    = "wrongsecret-2"
+           51┆   recovery_window_in_days = 0
+           52┆ }
+
+    /repo/azure/secrets.tf
+    ❯❱ terraform.azure.security.keyvault.keyvault-purge-enabled.keyvault-purge-enabled
+          Key vault should have purge protection enabled
+          Details: https://sg.run/Z4xD
+
+           17┆ resource "azurerm_key_vault" "vault" {
+
+   ❯❯❱ terraform.azure.security.keyvault.keyvault-specify-network-acl.keyvault-specify-network-acl
+          Network ACLs allow you to reduce your exposure to risk by limiting what can access your key vault.
+          The default action of the Network ACL should be set to deny for when IPs are not matched. Azure
+          services can be allowed to bypass.
+          Details: https://sg.run/nKgX
+
+           17┆ resource "azurerm_key_vault" "vault" {
+
+     ❱ terraform.azure.security.keyvault.keyvault-content-type-for-secret.keyvault-content-type-for-secret
+          Key vault Secret should have a content type set
+          Details: https://sg.run/eoAb
+
+           55┆ resource "azurerm_key_vault_secret" "wrongsecret_1" {
+
+     ❱ terraform.azure.security.keyvault.keyvault-ensure-secret-expires.keyvault-ensure-secret-expires
+          Ensure that the expiration date is set on all secrets
+          Details: https://sg.run/d2RZ
+
+           55┆ resource "azurerm_key_vault_secret" "wrongsecret_1" {
+
+     ❱ terraform.azure.security.keyvault.keyvault-content-type-for-secret.keyvault-content-type-for-secret
+          Key vault Secret should have a content type set
+          Details: https://sg.run/eoAb
+
+           69┆ resource "azurerm_key_vault_secret" "wrongsecret_2" {
+
+     ❱ terraform.azure.security.keyvault.keyvault-ensure-secret-expires.keyvault-ensure-secret-expires
+          Ensure that the expiration date is set on all secrets
+          Details: https://sg.run/d2RZ
+
+           69┆ resource "azurerm_key_vault_secret" "wrongsecret_2" {
+
+     ❱ terraform.azure.security.keyvault.keyvault-content-type-for-secret.keyvault-content-type-for-secret
+          Key vault Secret should have a content type set
+          Details: https://sg.run/eoAb
+
+           89┆ resource "azurerm_key_vault_secret" "wrongsecret_3" {
+
+     ❱ terraform.azure.security.keyvault.keyvault-ensure-secret-expires.keyvault-ensure-secret-expires
+          Ensure that the expiration date is set on all secrets
+          Details: https://sg.run/d2RZ
+
+           89┆ resource "azurerm_key_vault_secret" "wrongsecret_3" {
+
+    /repo/azure/shared-state/main.tf
+    ❯❱ terraform.azure.security.storage.storage-queue-services-logging.storage-queue-services-logging
+          Storage Analytics logs detailed information about successful and failed requests to a storage
+          service. This information can be used to monitor individual requests and to diagnose issues with a
+          storage service. Requests are logged on a best-effort basis.
+          Details: https://sg.run/0yEv
+
+           46┆ resource "azurerm_storage_account" "account" {
+           47┆   name                     = format("wrongsecrets%s%s", random_string.suffix.result,
+               random_integer.suffix.result)
+           48┆   resource_group_name      = azurerm_resource_group.default.name
+           49┆   location                 = azurerm_resource_group.default.location
+           50┆   account_tier             = "Standard"
+           51┆   account_replication_type = "LRS"
+           52┆ }
+
+   ❯❯❱ terraform.azure.security.storage.storage-use-secure-tls-policy.storage-use-secure-tls-policy
+          Azure Storage currently supports three versions of the TLS protocol: 1.0, 1.1, and 1.2. Azure
+          Storage uses TLS 1.2 on public HTTPS endpoints, but TLS 1.0 and TLS 1.1 are still supported for
+          backward compatibility. This check will warn if the minimum TLS is not set to TLS1_2.
+          Details: https://sg.run/KXD7
+
+           46┆ resource "azurerm_storage_account" "account" {
+           47┆   name                     = format("wrongsecrets%s%s", random_string.suffix.result,
+               random_integer.suffix.result)
+           48┆   resource_group_name      = azurerm_resource_group.default.name
+           49┆   location                 = azurerm_resource_group.default.location
+           50┆   account_tier             = "Standard"
+           51┆   account_replication_type = "LRS"
+           52┆ }
+
+    /repo/k8s/challenge53/Dockerfile
+   ❯❯❱ dockerfile.security.missing-user.missing-user
+          By not specifying a USER, a program in the container may run as 'root'. This is a security hazard.
+          If an attacker can control a process running as root, they may have control over the container.
+          Ensure that the last USER in a Dockerfile is a USER other than 'root'.
+          Details: https://sg.run/Gbvn
+
+           ▶▶┆ Autofix ▶ USER non-root CMD ["./home/wrongsecrets/start-on-arch.sh"]
+            8┆ CMD ["./home/wrongsecrets/start-on-arch.sh"]
+
+    /repo/k8s/challenge53/secret-challenge53-sidecar.yml
+    ❯❱ yaml.kubernetes.security.allow-privilege-escalation-no-securitycontext.allow-privilege-escalation-no-
+       securitycontext
+          In Kubernetes, each pod runs in its own isolated environment with its own set of security policies.
+          However, certain container images may contain `setuid` or `setgid` binaries that could allow an
+          attacker to perform privilege escalation and gain access to sensitive resources. To mitigate this
+          risk, it's recommended to add a `securityContext` to the container in the pod, with the parameter
+          `allowPrivilegeEscalation` set to `false`. This will prevent the container from running any
+          privileged processes and limit the impact of any potential attacks. By adding a `securityContext` to
+          your Kubernetes pod, you can help to ensure that your containerized applications are more secure and
+          less vulnerable to privilege escalation attacks.
+          Details: https://sg.run/eleR
+
+           ▶▶┆ Autofix ▶ securityContext: allowPrivilegeEscalation: false name
+           49┆ name: sidecar
+
+    /repo/k8s/sealed-secret-controller.yaml
+    ❯❱ yaml.kubernetes.security.allow-privilege-escalation.allow-privilege-escalation
+          In Kubernetes, each pod runs in its own isolated environment with its own set of security policies.
+          However, certain container images may contain `setuid` or `setgid` binaries that could allow an
+          attacker to perform privilege escalation and gain access to sensitive resources. To mitigate this
+          risk, it's recommended to add a `securityContext` to the container in the pod, with the parameter
+          `allowPrivilegeEscalation` set to `false`. This will prevent the container from running any
+          privileged processes and limit the impact of any potential attacks. By adding the
+          `allowPrivilegeEscalation` parameter to your the `securityContext`, you can help to ensure that your
+          containerized applications are more secure and less vulnerable to privilege escalation attacks.
+          Details: https://sg.run/ljp6
+
+           ▶▶┆ Autofix ▶ securityContext: allowPrivilegeEscalation: false #
+           45┆ securityContext:
+
+    /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/Challenge29.java
+    ❯❱ java.lang.security.audit.crypto.ecb-cipher.ecb-cipher
+          Cipher in ECB mode is detected. ECB mode produces the same output for the same input each time which
+          allows an attacker to intercept and replay the data. Further, ECB mode does not provide any
+          integrity checking. See https://find-sec-bugs.github.io/bugs.htm#CIPHER_INTEGRITY.
+          Details: https://sg.run/Ro9K
+
+           29┆ Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding");
+
+    /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/Challenge39.java
+    ❯❱ java.lang.security.audit.crypto.use-of-default-aes.use-of-default-aes
+          Use of AES with no settings detected. By default, java.crypto.Cipher uses ECB mode. ECB doesn't
+          provide message confidentiality and is not semantically secure so should not be used. Instead, use a
+          strong, secure cipher: java.crypto.Cipher.getInstance("AES/CBC/PKCS7PADDING"). See
+          https://owasp.org/www-community/Using_the_Java_Cryptographic_Extensions for more information.
+          Details: https://sg.run/nzKO
+
+           54┆ Cipher cipher = Cipher.getInstance("AES");
+
+    /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/Challenge40.java
+    ❯❱ java.lang.security.audit.crypto.use-of-default-aes.use-of-default-aes
+          Use of AES with no settings detected. By default, java.crypto.Cipher uses ECB mode. ECB doesn't
+          provide message confidentiality and is not semantically secure so should not be used. Instead, use a
+          strong, secure cipher: java.crypto.Cipher.getInstance("AES/CBC/PKCS7PADDING"). See
+          https://owasp.org/www-community/Using_the_Java_Cryptographic_Extensions for more information.
+          Details: https://sg.run/nzKO
+
+           55┆ Cipher cipher = Cipher.getInstance("AES");
+
+    /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/Challenge41.java
+    ❯❱ java.lang.security.audit.crypto.use-of-md5.use-of-md5
+          Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is
+          therefore not suitable as a cryptographic signature. Use HMAC instead.
+          Details: https://sg.run/ryJn
+
+           ▶▶┆ Autofix ▶ "SHA-512"
+           50┆ MessageDigest md = MessageDigest.getInstance("MD5");
+
+    /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/Challenge49.java
+    ❯❱ java.lang.security.audit.crypto.use-of-md5.use-of-md5
+          Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is
+          therefore not suitable as a cryptographic signature. Use HMAC instead.
+          Details: https://sg.run/ryJn
+
+           ▶▶┆ Autofix ▶ "SHA-512"
+           66┆ MessageDigest md = MessageDigest.getInstance("MD5");
+
+    ❯❱ java.lang.security.audit.crypto.use-of-default-aes.use-of-default-aes
+          Use of AES with no settings detected. By default, java.crypto.Cipher uses ECB mode. ECB doesn't
+          provide message confidentiality and is not semantically secure so should not be used. Instead, use a
+          strong, secure cipher: java.crypto.Cipher.getInstance("AES/CBC/PKCS7PADDING"). See
+          https://owasp.org/www-community/Using_the_Java_Cryptographic_Extensions for more information.
+          Details: https://sg.run/nzKO
+
+           85┆ Cipher cipher = Cipher.getInstance("AES");
+
+    /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/binaryexecution/BinaryExecutionHelper.java
+   ❯❯❱ java.lang.security.audit.command-injection-process-builder.command-injection-process-builder
+          A formatted or concatenated string was detected as input to a ProcessBuilder call. This is dangerous
+          if a variable is controlled by user input and could result in a command injection. Ensure your      
+          variables are not controlled by users or sufficiently sanitized.
+          Details: https://sg.run/gJJe
+
+          122┆ ps = new ProcessBuilder(execFile.getPath(), "spoil");
+            ⋮┆----------------------------------------
+          125┆ ps = new ProcessBuilder(execFile.getPath(), "guess", guess);
+            ⋮┆----------------------------------------
+          127┆ ps = new ProcessBuilder(execFile.getPath(), guess);
+
+    /repo/src/main/resources/executables/db-dumps/db-dump-2.txt
+   ❯❯❱ generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash
+          bcrypt hash detected
+          Details: https://sg.run/3A8G
+
+            1┆ user_1, $2b$10$AL/XPsWYU0cekug9KxIEBuSWbgaNCjaDWq/w/MBT0l3FEyz1RtaE2
+            ⋮┆----------------------------------------
+            2┆ user_2, $2b$10$AL/XPsWYU0cekug9KxIEBu/hlEgW48XTPh7IxKMoUD7MvR5yw5GzS
+            ⋮┆----------------------------------------
+            3┆ user_3, $2b$10$AL/XPsWYU0cekug9KxIEBucrOlG1vqF9tT12HHMQO3LsoZfXV4Kwm
+            ⋮┆----------------------------------------
+            4┆ user_4, $2b$10$AL/XPsWYU0cekug9KxIEBuzCs0Pf9LkaJr4q3RoQmN4pMfQ4W3f7W
+            ⋮┆----------------------------------------
+            5┆ user_5, $2b$10$AL/XPsWYU0cekug9KxIEBub4kocue4NeBWRw13nJY73lfcpj0W9sK
+            ⋮┆----------------------------------------
+            6┆ user_6, $2b$10$AL/XPsWYU0cekug9KxIEBueWjLD7koXriGpJubmPHZdgvXr7TXqt2
+            ⋮┆----------------------------------------
+            7┆ user_7, $2b$10$AL/XPsWYU0cekug9KxIEBub7GTp65ElqcvyNYn7tiTgfIJDbSIor2
+            ⋮┆----------------------------------------
+            8┆ user_8, $2b$10$AL/XPsWYU0cekug9KxIEBuXJmQXySRKIzazcUmQmTdsD6nqGLwjp6
+            ⋮┆----------------------------------------
+            9┆ user_9, $2b$10$AL/XPsWYU0cekug9KxIEBuQLvMTuJ3ZEcOQwGFhAAJxZEDurO5nkK
+            ⋮┆----------------------------------------
+           10┆ user_10, $2b$10$AL/XPsWYU0cekug9KxIEBuG0lxHNKB1b8/irnbvU.LewlaOCpNsYK
+            ⋮┆----------------------------------------
+           11┆ user_11, $2b$10$AL/XPsWYU0cekug9KxIEBuDQnjd2Pq8MrbcnbJWC0eJndpg25AKDS
+            ⋮┆----------------------------------------
+           12┆ user_12, $2b$10$AL/XPsWYU0cekug9KxIEBuvZcoNJHxTiiQKxbUhWjOcm9ACoaIFNW
+            ⋮┆----------------------------------------
+           13┆ user_13, $2b$10$AL/XPsWYU0cekug9KxIEBuG4wtyDXcqJsGC6EOUELUXV0GHULXZ32
+            ⋮┆----------------------------------------
+           14┆ user_14, $2b$10$AL/XPsWYU0cekug9KxIEBu75XkDPcwCMNEp1n1HqVJhtwXIdr/qsS
+            ⋮┆----------------------------------------
+           15┆ user_15, $2b$10$AL/XPsWYU0cekug9KxIEBuE5MsvF02vTcs/F/YfgUS/8bsntiNj1S
+            ⋮┆----------------------------------------
+           16┆ user_16, $2b$10$AL/XPsWYU0cekug9KxIEBuss9lfL0d0Fo5bwXngStAWpxp.IwSt9q
+            ⋮┆----------------------------------------
+           17┆ user_17, $2b$10$AL/XPsWYU0cekug9KxIEBuyQ.QgBukZtpC83AALn/5DhxmqJPDQmW
+            ⋮┆----------------------------------------
+           18┆ user_18, $2b$10$AL/XPsWYU0cekug9KxIEBuqD0hv0PWUPIbwKPI7n6s.qRGiOXgHxO
+            ⋮┆----------------------------------------
+           19┆ user_19, $2b$10$AL/XPsWYU0cekug9KxIEBubeLb2lU4oRL.eW38bbJsjdL.ddrUJoi
+            ⋮┆----------------------------------------
+           20┆ user_20, $2b$10$AL/XPsWYU0cekug9KxIEBueJHMcO2DtodfwSHkzDbL4vrkrerLzk.
+
+
+
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+Some files were skipped or only partially analyzed.
+  Scan was limited to files tracked by git.
+  Partially scanned: 3 files only partially analyzed due to parsing or internal Semgrep errors
+  Scan skipped: 7 files larger than 1.0 MB, 117 files matching .semgrepignore patterns
+  For a full list of skipped files, run semgrep with the --verbose flag.
+
+Ran 760 rules on 593 files: 44 findings.
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.

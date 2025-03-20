@@ -1,0 +1,223 @@
+Updating files: 100% (717/717), done.
+
+    ○
+    │╲
+    │ ○
+    ○ ░
+    ░    gitleaks
+
+Finding:     export tempPassword="IpxYw7vJDDYyNSwOVjYaghWCmbGOwiWAekgJH6eUpZE="
+Secret:      IpxYw7vJDDYyNSwOVjYaghWCmbGOwiWAekgJH6eUpZE=
+RuleID:      generic-api-key
+Entropy:     4.925118
+File:        /repo/.github/scripts/.bash_history
+Line:        350
+Fingerprint: /repo/.github/scripts/.bash_history:generic-api-key:350
+
+Finding:     data:
+     answer: VkJVR2gzd3UvM0kxbmFIajFVZjk3WTBMcThCNS85MnExandwMy9hWVN3SFNKSThXcWRabllMajc4aEVTbGZQUEtmMVpL...
+kind: Secret
+Secret:      answer: VkJVR2gzd3UvM0kxbmFIajFVZjk3WTBMcThCNS85MnExandwMy9hWVN3SFNKSThXcWRabllMajc4aEVTbGZQUEtmMVpL...
+RuleID:      kubernetes-secret-yaml
+Entropy:     5.614126
+File:        /repo/k8s/challenge33.yml
+Line:        2
+Fingerprint: /repo/k8s/challenge33.yml:kubernetes-secret-yaml:2
+
+Finding:     data:
+     answer: VkJVR2gzd3UvM0kxbmFIajFVZjk3WTBMcThCNS85MnExandwMy9hWVN3SFNKSThXcWRabllMajc4aEVTbGZQUEtmMVpL...
+kind: Secret
+Secret:      answer: VkJVR2gzd3UvM0kxbmFIajFVZjk3WTBMcThCNS85MnExandwMy9hWVN3SFNKSThXcWRabllMajc4aEVTbGZQUEtmMVpL...
+RuleID:      kubernetes-secret-yaml
+Entropy:     5.614126
+File:        /repo/okteto/k8s/challenge33.yml
+Line:        2
+Fingerprint: /repo/okteto/k8s/challenge33.yml:kubernetes-secret-yaml:2
+
+Finding:     data:
+     funnier: dGhpcyBpcyBhcGFzc3dvcmQ=
+kind: Secret
+Secret:      funnier: dGhpcyBpcyBhcGFzc3dvcmQ=
+RuleID:      kubernetes-secret-yaml
+Entropy:     4.268344
+File:        /repo/okteto/k8s/secrets-secret.yml
+Line:        2
+Fingerprint: /repo/okteto/k8s/secrets-secret.yml:kubernetes-secret-yaml:2
+
+Finding:     data:
+     funnier: dGhpcyBpcyBhcGFzc3dvcmQ=
+kind: Secret
+Secret:      funnier: dGhpcyBpcyBhcGFzc3dvcmQ=
+RuleID:      kubernetes-secret-yaml
+Entropy:     4.268344
+File:        /repo/k8s/secrets-secret.yml
+Line:        2
+Fingerprint: /repo/k8s/secrets-secret.yml:kubernetes-secret-yaml:2
+
+Finding:     ...32u9t1u4npowbvsw4mb&auth=7f75f2b2a4207c91fbc1ea59f7a495eb"
+Secret:      7f75f2b2a4207c91fbc1ea59f7a495eb
+RuleID:      generic-api-key
+Entropy:     3.507049
+File:        /repo/okteto/k8s/secret-challenge-ctf-deployment.yml
+Line:        97
+Fingerprint: /repo/okteto/k8s/secret-challenge-ctf-deployment.yml:generic-api-key:97
+
+Finding:     ...2mavmv1m61tjmyj9of5&auth=6519be82ef910868529091527c3edb3f"
+Secret:      6519be82ef910868529091527c3edb3f
+RuleID:      generic-api-key
+Entropy:     3.694549
+File:        /repo/okteto/k8s/secret-challenge-deployment.yml
+Line:        78
+Fingerprint: /repo/okteto/k8s/secret-challenge-deployment.yml:generic-api-key:78
+
+Finding:     "secret": "AgARfKwI9gk4rNz6floknF2lXCiHTHDhRTtWv1DsBw0xptba9c4uj/wC2wbBHhWddoGJEC5TtiJNTM/Rl04UMKFiQOVWKWBupd3N..."
+Secret:      AgARfKwI9gk4rNz6floknF2lXCiHTHDhRTtWv1DsBw0xptba9c4uj/wC2wbBHhWddoGJEC5TtiJNTM/Rl04UMKFiQOVWKWBupd3N...
+RuleID:      generic-api-key
+Entropy:     5.945946
+File:        /repo/k8s/sealed-challenge48.json
+Line:        18
+Fingerprint: /repo/k8s/sealed-challenge48.json:generic-api-key:18
+
+Finding:     ...ge: jeroenwillemsen/wrongsecrets:1.10.3-k8s-vault
+Secret:      1.10.3-k8s-vault
+RuleID:      generic-api-key
+Entropy:     3.625000
+File:        /repo/k8s/secret-challenge-vault-deployment.yml
+Line:        53
+Fingerprint: /repo/k8s/secret-challenge-vault-deployment.yml:generic-api-key:53
+
+Finding:     ...ge: jeroenwillemsen/wrongsecrets:1.10.3-no-vault
+Secret:      1.10.3-no-vault
+RuleID:      generic-api-key
+Entropy:     3.506891
+File:        /repo/k8s/secret-challenge-deployment.yml
+Line:        31
+Fingerprint: /repo/k8s/secret-challenge-deployment.yml:generic-api-key:31
+
+Finding:     ...0b627gzp19ahqh7rl6j&auth=09193ea6b8def3e27a1a41f98d4265d7"
+Secret:      09193ea6b8def3e27a1a41f98d4265d7
+RuleID:      generic-api-key
+Entropy:     3.819549
+File:        /repo/src/main/java/org/owasp/wrongsecrets/canaries/AdditionalCanaryData.java
+Line:        25
+Fingerprint: /repo/src/main/java/org/owasp/wrongsecrets/canaries/AdditionalCanaryData.java:generic-api-key:25
+
+Finding:     ...KeyContent.replace("-----BEGIN PRIVATE KEY-----", "");
+    privateKeyContent = privateKeyContent.replace("-----END PRIVA...", "");
+Secret:      -----BEGIN PRIVATE KEY-----", "");
+    privateKeyContent = privateKeyContent.replace("-----END PRIVA...
+RuleID:      private-key
+Entropy:     4.573412
+File:        /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/Challenge29.java
+Line:        59
+Fingerprint: /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/Challenge29.java:private-key:59
+
+Finding:     ...static final String newKey = "mISydD0En55Fq8FXbUfX720K8Vc6/aQYtkFmkp7ntsM="
+Secret:      mISydD0En55Fq8FXbUfX720K8Vc6/aQYtkFmkp7ntsM=
+RuleID:      generic-api-key
+Entropy:     4.942275
+File:        /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/WrongSecretsConstants.java
+Line:        10
+Fingerprint: /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/WrongSecretsConstants.java:generic-api-key:10
+
+Finding:     ...static final String password = "YjNCbGJpQnpaWE5oYldVPQo="
+Secret:      YjNCbGJpQnpaWE5oYldVPQo=
+RuleID:      generic-api-key
+Entropy:     4.251629
+File:        /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/authchallenge/Challenge37.java
+Line:        23
+Fingerprint: /repo/src/main/java/org/owasp/wrongsecrets/challenges/docker/authchallenge/Challenge37.java:generic-api-key:23
+
+Finding:     "key":"3Ulyfmfgro6uh1cN"
+Secret:      3Ulyfmfgro6uh1cN
+RuleID:      generic-api-key
+Entropy:     3.875000
+File:        /repo/src/main/resources/executables/secrchallenge.json
+Line:        2
+Fingerprint: /repo/src/main/resources/executables/secrchallenge.json:generic-api-key:2
+
+Finding:     "secret":"7RwunHeLkY7c0TCTLRMOGCIeX0jWiYibAexA0unYGDI="
+Secret:      7RwunHeLkY7c0TCTLRMOGCIeX0jWiYibAexA0unYGDI=
+RuleID:      generic-api-key
+Entropy:     4.635235
+File:        /repo/src/main/resources/executables/secrchallenge.json
+Line:        3
+Fingerprint: /repo/src/main/resources/executables/secrchallenge.json:generic-api-key:3
+
+Finding:     key:
+    2b7e151628aed2a6abf7158809cf4f3c
+Secret:      2b7e151628aed2a6abf7158809cf4f3c
+RuleID:      generic-api-key
+Entropy:     3.882049
+File:        /repo/src/main/resources/executables/decrypt/lib/aes.c
+Line:        18
+Fingerprint: /repo/src/main/resources/executables/decrypt/lib/aes.c:generic-api-key:18
+
+Finding:     ...oken                s.Jqka4lSy8ayQw2LFsvyAgnTI
+Secret:      s.Jqka4lSy8ayQw2LFsvyAgnTI
+RuleID:      vault-service-token
+Entropy:     4.363713
+File:        /repo/src/main/resources/explanations/challenge45_hint.adoc
+Line:        12
+Fingerprint: /repo/src/main/resources/explanations/challenge45_hint.adoc:vault-service-token:12
+
+Finding:     ...oken                s.Jqka4lSy8ayQw2LFsvyAgnTI
+Secret:      s.Jqka4lSy8ayQw2LFsvyAgnTI
+RuleID:      vault-service-token
+Entropy:     4.363713
+File:        /repo/src/main/resources/explanations/challenge44_hint.adoc
+Line:        12
+Fingerprint: /repo/src/main/resources/explanations/challenge44_hint.adoc:vault-service-token:12
+
+Finding:     ...oken                s.Jqka4lSy8ayQw2LFsvyAgnTI
+Secret:      s.Jqka4lSy8ayQw2LFsvyAgnTI
+RuleID:      vault-service-token
+Entropy:     4.363713
+File:        /repo/src/main/resources/explanations/challenge7_hint.adoc
+Line:        8
+Fingerprint: /repo/src/main/resources/explanations/challenge7_hint.adoc:vault-service-token:8
+
+Finding:     "This is not the secret", "hRZqOEB0V0kU6JhEXdm8UH32VDAbAbdRxg5RMpo/fA8caUCvJhs=");
+Secret:      hRZqOEB0V0kU6JhEXdm8UH32VDAbAbdRxg5RMpo/fA8caUCvJhs=
+RuleID:      generic-api-key
+Entropy:     5.065448
+File:        /repo/src/test/java/org/owasp/wrongsecrets/challenges/docker/Challenge13Test.java
+Line:        19
+Fingerprint: /repo/src/test/java/org/owasp/wrongsecrets/challenges/docker/Challenge13Test.java:generic-api-key:19
+
+Finding:     "This is not the secret", "hRZqOEB0V0kU6JhEXdm8UH32VDAbAbdRxg5RMpo/fA8caUCvJhs=");
+Secret:      hRZqOEB0V0kU6JhEXdm8UH32VDAbAbdRxg5RMpo/fA8caUCvJhs=
+RuleID:      generic-api-key
+Entropy:     5.065448
+File:        /repo/src/test/java/org/owasp/wrongsecrets/challenges/docker/Challenge13Test.java
+Line:        34
+Fingerprint: /repo/src/test/java/org/owasp/wrongsecrets/challenges/docker/Challenge13Test.java:generic-api-key:34
+
+Finding:     "This is not the secret", "hRZqOEB0V0kU6JhEXdm8UH32VDAbAbdRxg5RMpo/fA8caUCvJhs=");
+Secret:      hRZqOEB0V0kU6JhEXdm8UH32VDAbAbdRxg5RMpo/fA8caUCvJhs=
+RuleID:      generic-api-key
+Entropy:     5.065448
+File:        /repo/src/test/java/org/owasp/wrongsecrets/challenges/docker/Challenge13Test.java
+Line:        48
+Fingerprint: /repo/src/test/java/org/owasp/wrongsecrets/challenges/docker/Challenge13Test.java:generic-api-key:48
+
+Finding:     -----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDIO3jiw1i9BHi30bQ78e7l...
+Secret:      -----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDIO3jiw1i9BHi30bQ78e7l...
+RuleID:      private-key
+Entropy:     6.015135
+File:        /repo/src/test/resources/RSAprivatekey.pem
+Line:        1
+Fingerprint: /repo/src/test/resources/RSAprivatekey.pem:private-key:1
+
+Finding:     challenge41password=UEBzc3dvcmQxMjM=
+Secret:      UEBzc3dvcmQxMjM=
+RuleID:      generic-api-key
+Entropy:     3.750000
+File:        /repo/src/main/resources/application.properties
+Line:        74
+Fingerprint: /repo/src/main/resources/application.properties:generic-api-key:74
+
+3:07PM INF scanned ~1157453 bytes (1.16 MB) in 5.53s
+3:07PM WRN leaks found: 25
